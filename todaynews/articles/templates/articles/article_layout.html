@@ -1,0 +1,15 @@
+{% extends 'main/layout.html' %}
+
+{% block title %} {{ article.title }} {% endblock %}
+
+{% block content %}
+    <div class="data_field">
+        <h1> {{ article.title }}</h1>
+        <p> {{ article.author }}</p>
+        <p> {{ article.date }}</p>
+        <p> {{ article.content|linebreaks }} </p>
+        <p> {{ article.resource }}</p>
+        <a href="{% url 'article_update' article.id %}" class="button_edit">Редактировать</a>
+        <a href="{% url 'article_delete' article.id %}" class="button_delete">Удалить</a>
+    </div>
+{% endblock %}

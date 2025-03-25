@@ -1,0 +1,21 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+Добавление новой статьи
+{% endblock %}
+
+{% block content %}
+    <h1 class="center-text">Добавление новой статьи</h1>
+    <div class="article_form">
+       <form method="post">
+           <div class="error_message"> {{ error }} </div>
+           {{ form.title }}<br>
+           {{ form.author }}<br>
+           {{ form.resource }}<br>
+           {{ form.date }}<br>
+           {{ form.content }}<br>
+           {% csrf_token %}
+            <button class="btn btn-success" type="submit">Сохранить</button>
+       </form>
+    </div>
+{% endblock %}

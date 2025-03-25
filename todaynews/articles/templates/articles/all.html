@@ -1,0 +1,57 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}
+Новости
+{% endblock %}
+
+{% block content %}
+    <h1>Последние статьи:</h1>
+    <form method="GET" class="filter-sort-form data_field">
+        <!-- Фильтрация -->
+        <div class="filter-container">
+            <i class="fa-solid fa-filter"></i>
+            <span>Фильтрация</span>
+            <div class="filter-group">
+                <input type="text" name="author" placeholder="Автор">
+                <input type="date" name="date">
+                <input type="text" name="resource" placeholder="Источник">
+            </div>
+        </div>
+
+        <!-- Сортировка -->
+        <div class="sort-container">
+            <i class="fa-solid fa-sort"></i>
+            <span>Сортировка</span>
+            <div class="sort-group">
+                <select name="sort">
+                    <option value="-date">По дате ↓</option>
+                    <option value="date">По дате ↑</option>
+                    <option value="author">По автору A-Я</option>
+                    <option value="-author">По автору Я-A</option>
+                    <option value="resource">По ресурсу A-Я</option>
+                    <option value="-resource">По ресурсу Я-A</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Кнопка -->
+        <button type="submit" class="button_apply">
+            <i class="fa-solid fa-check"></i> Применить
+        </button>
+    </form>
+    <div class="articles_container">
+        {% for el in articles %}
+            <div class="article_preview">
+                <div class="article_content">
+                    <h3>{{ el.title }}</h3>
+                    <p>{{ el.resource }}</p>
+                    <p>{{ el.author }}</p>
+                    <p>{{ el.date }}</p>
+                </div>
+                <div class="button_container">
+                    <a href="{% url 'article_detail' el.id %}" class="read_details">Читать полностью</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
